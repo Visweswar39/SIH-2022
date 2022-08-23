@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Jobs {% endblock title %}
+{% block jobactive %}active{% endblock jobactive %}
+{% block body %}
+
+<!-- Hero Area Start-->
+<div class="slider-area ">
+    <div class="single-slider section-overly slider-height2 d-flex align-items-center" style="background-image:url('{% static '/img/banner/about.jpg' %}')">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="hero-cap text-center">
+                        <h2>Get your job</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Hero Area End -->
+
+<h1>Hello World Class Test</h1>
+<p>{{ result }}</p>
+
+
+{% endblock body %}
