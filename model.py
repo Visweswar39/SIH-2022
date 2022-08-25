@@ -12,7 +12,6 @@ states=pd.read_csv('states.csv')
 
 states=list(states)
 
-states
 
 locations=pd.read_csv('Locations.csv')
 
@@ -21,8 +20,6 @@ locations=list(locations)
 jobs=pd.read_csv('jobs.csv')
 
 jobs=list(jobs)
-
-len(jobs)
 
 
 regions=['South','North','East','West','Central']
@@ -49,7 +46,6 @@ eee.remove('Instrumentation engineer')
 
 eee.append(jobs[39])
 
-eee
 
 mec=jobs[40:50]
 
@@ -69,10 +65,6 @@ m['Kerala'].remove('Chennai')
 m['Andhra Pradesh'].append('Visakhapatnam')
 m['Tamil Nadu'].remove('Visakhapatnam')
 
-
-
-m
-
 m['Goa'].remove('Srinagar')
 m['Goa'].remove('Jammu')
 m['Jammu and Kashmir'].append('Srinagar')
@@ -90,7 +82,6 @@ m['Uttarakhand'].append('Haridwar')
 m['Uttarakhand'].append('Roorkee')
 m['Uttarakhand'].append('Dehradun')
 
-m
 
 m['Uttarakhand'].remove('Amritsar')
 m['Uttarakhand'].remove('Jalandhar')
@@ -99,7 +90,6 @@ m['Punjab'].append('Amritsar')
 m['Punjab'].append('Jalandhar')
 m['Punjab'].append('Chandigarh')
 
-m
 
 m['Uttar Pradesh'].append('Lucknow')
 m['Uttar Pradesh'].append('Allahabad')
@@ -155,7 +145,6 @@ m['Bihar'].append('Gaya')
 m['Jharkhnad'].append('Jamshedpur')
 m['Jharkhnad'].remove('Gaya')
 
-m
 
 ## Mapping states to their concerned regions
 
@@ -172,7 +161,6 @@ n['West']=states[13:16]
 
 n['Central']=states[16:]
 
-n
 
 ## Creation of randomised Dataset
 
@@ -212,11 +200,8 @@ for c in data['JOB_TITLE']:
     else:
         branch.append('CHEM')
 
-branch
-
 data['BRANCH']=branch
 
-data
 
 ### Determination of States
 
@@ -226,11 +211,9 @@ for v in data['JOB_LOCATION']:
         if v in m[w]:
             stater.append(w)
             break
-stater
 
 data['LOC_STATE']=stater
 
-data
 
 ### Determination of Regions
 
@@ -240,13 +223,11 @@ for v in data['LOC_STATE']:
         if v in n[w]:
             regionr.append(w)
             break
-regionr
 
 data['LOC_REGION']=regionr
 
 data=data[['YEAR','JOB_TITLE','BRANCH','JOB_LOCATION','LOC_STATE','LOC_REGION']]
 
-data
 
 ## Considering next 5 years for prediction
 
@@ -274,11 +255,8 @@ for v in query['LOC_STATE']:
         if v in n[w]:
             regionq.append(w)
             break
-regionq
 
 query['LOC_REGION']=regionq
-
-query.info()
 
 ## Feature scaling
 
@@ -310,33 +288,6 @@ train_y=np.array(train_y)
 
 train_x=train_x.reshape(250,3,1)
 
-train_x
-
-train_y.shape
-
-## Generation of test dataset
-
-test_x=[]
-test_y=[]
-for index,row in query.iterrows():
-    y2=[]
-    x_test=[]
-    p=data.loc[(data['BRANCH']==row['BRANCH']) & (data['LOC_STATE']==row['LOC_STATE']) & (data['LOC_REGION']==row['LOC_REGION'])]
-    for i in years:
-        y=p.loc[p['YEAR']==i].shape[0]
-        y*=98
-        y2.append(y)
-    y2=np.array(y2[7:])
-    y2=y2.reshape(-1,1)
-    scaled2= sc.fit_transform(y2)
-    for j in range(scaled2.shape[0]-3):
-        x_test.append(scaled2[j:j+3,])
-        test_y.append(scaled2[j+3][0])
-    test_x.append(np.array(x_test))
-test_x=np.array(test_x)
-test_y=np.array(test_y)
-
-test_x=test_x.reshape(test_x.shape[0],3,1)
 
 ## Model Building
 
@@ -368,56 +319,3 @@ regressor.compile(optimizer = 'adam', loss = 'mean_squared_error')
 ## Model Training
 
 regressor.fit(x = train_x, y = train_y, batch_size = 15, epochs = 50)
-
-trained_model = regressor
-
-## Model Prediction
-
-# predicted_y = regressor.predict(test_x)
-
-## Model Evaluation
-
-# from sklearn.metrics import mean_absolute_error,mean_squared_error,r2_score
-
-# print('mae=',mean_absolute_error(test_y,predicted_y))
-# print('mse=',mean_squared_error(test_y,predicted_y))
-# print('r2_score=',r2_score(test_y,predicted_y))
-
-## Inverse Scaling to get actual values
-
-# trans_y = sc.inverse_transform(predicted_y)
-
-# trans_y.dtype=int
-
-# trans_y
-
-
-## Function to produce output based on user's queries
-
-def final(region,state,course):
-    u=data.loc[(data['BRANCH']==course) & (data['LOC_STATE']==state) & (data['LOC_REGION']==region)]
-    o=[]
-    for i in years:
-        y=u.loc[u['YEAR']==i].shape[0]
-        o.append(y*98) 
-    h=[]
-    for i in range(5):
-        f=np.array(o[-3:],dtype='object')
-        f=f.reshape(-1,1)
-        scaled_f= sc.fit_transform(f)
-        scaled_f=scaled_f.reshape(1,3,1)
-        predicted_f= regressor.predict(scaled_f)
-        bhu=sc.inverse_transform(predicted_f)
-        h.append(int(bhu))
-        o.append(int(bhu))
-        h=list(h)
-    print(f"this is o {o}")
-    print(f"this is h {h}")
-    return (o,h)
-    # fig= plt.figure()
-    # fig.set_figwidth(10)
-    # fig.set_figheight(5)
-    # plt.plot(years,o[:-5])
-    # plt.plot(x_pred,h)
-
-final('South','Goa','ECE')
