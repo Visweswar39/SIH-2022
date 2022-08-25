@@ -1,0 +1,120 @@
+<!doctype html>
+{% load static %}
+<html class="no-js" lang="zxx">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>{% block title %}{% endblock title %}</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="manifest" href="site.webmanifest">
+		<link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
+
+		<!-- CSS here -->
+            <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+            {% comment %} <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}"> {% endcomment %}
+            {% comment %} <link rel="stylesheet" href="{% static 'css/flaticon.css' %}"> {% endcomment %}
+            {% comment %} <link rel="stylesheet" href="{% static 'css/price_rangs.css' %}"> {% endcomment %}
+            {% comment %} <link rel="stylesheet" href="{% static 'css/slicknav.css' %}"> {% endcomment %}
+            {% comment %} <link rel="stylesheet" href="{% static 'css/animate.min.css' %}"> {% endcomment %}
+            {% comment %} <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}"> {% endcomment %}
+            {% comment %} <link rel="stylesheet" href="{% static 'css/fontawesome-all.min.css' %}"> {% endcomment %}
+            {% comment %} <link rel="stylesheet" href="{% static 'css/themify-icons.css' %}"> {% endcomment %}
+            {% comment %} <link rel="stylesheet" href="{% static 'css/slick.css' %}"> {% endcomment %}
+            {% comment %} <link rel="stylesheet" href="{% static 'css/nice-select.css' %}"> {% endcomment %}
+            <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+            <style>
+                {% block css %}
+            
+                {% endblock css %}
+            </style>
+   </head>
+  <body>
+
+    <header>
+        <!-- Header Start -->
+       <div class="header-area header-transparrent">
+           <div class="headder-top header-sticky">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-lg-3 col-md-2">
+                            <!-- Logo -->
+                            <div class="logo mx-0 px-0">
+                                <a href="/"><img style="height:75px" src="{% static 'img/logo/logo.png' %}" alt=""></a>
+                            </div>  
+                        </div>
+                        <div class="col-lg-9 col-md-9">
+                            <div class="menu-wrapper">
+                                <!-- Main-menu -->
+                                <div class="main-menu w-80">
+                                    <nav class="d-none d-lg-block">
+                                        <ul id="navigation">
+                                            <li><a href="/">Home</a></li>
+                                            <li><a href="/jobs">Jobs</a></li>
+                                            <li><a href="/admissions">Addmissions</a></li>
+                                            <li><a href="#">More</a>
+                                                <ul class="submenu">
+                                                    <li><a href="/">Home</a></li>
+                                                    <li><a href="/jobs">Jobs</a></li>
+                                                    <li><a href="/admissions">Admissions</a></li>
+                                                    <li><a href="/">Contact</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="contact.html">Contact</a></li>
+                                        </ul>
+                                    </nav>
+                                </div>          
+                                <!-- Header-btn -->
+                                <div class="header-btn d-none f-right d-lg-block">
+                                    <a href="#" class="btn head-btn1">Register</a>
+                                    <a href="#" class="btn head-btn2">Login</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Mobile Menu -->
+                        <div class="col-12">
+                            <div class="mobile_menu d-block d-lg-none"></div>
+                        </div>
+                    </div>
+                </div>
+           </div>
+       </div>
+        <!-- Header End -->
+    </header>
+
+    {% comment %} <nav class="navbar navbar-expand-lg navbar-light"> {% endcomment %}
+        {% comment %} <div class="container-fluid"> {% endcomment %}
+          {% comment %} <a class="navbar-brand" href="/"><img style="height:35px" src="{% static 'img/logo/logo.png' %}"></a> {% endcomment %}
+          {% comment %} <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse " id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link {% block homeactive %}{% endblock homeactive %}" aria-current="page" href="/">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link {% block jobactive %}{% endblock jobactive %}" href="/jobs">Jobs</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link {% block admissionactive %}{% endblock admissionactive %}" href="/admissions">Admissions</a>
+              </li>
+            </ul> 
+            <form class="d-flex" role="search">
+              <input class="form-control me-2" type="search" placeholder="username" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit">Login</button>
+            </form>
+          </div>
+        </div>
+      </nav> {% endcomment %}
+    {% block body %}{% endblock body %}
+
+    <footer class="py-3 text-light bg-dark text-center">Copy Right &copy; All Rights Reserverd | JobPort </footer>
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+
+    </script>
+  </body>
+</html>
