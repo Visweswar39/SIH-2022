@@ -17,7 +17,7 @@ def home(request):
     # loaded_model = pickle.load(open('pickletest1.pkl','rb'))
     # print(f"THIsis send list {send_ls}")
     # print(f"this is the predicted values {loaded_model.predict(send_ls)}")
-    return render(request, 'index.html')
+    return render(request, 'index2.html')
 
 def jobs(request):
     return render(request, 'jobs.html')
@@ -25,12 +25,25 @@ def jobs(request):
 
 def graph(y):
     x = ["Enrolled percentage","placement percentage","Employement potential"]
-    trace = go.Bar(x=x,y=y,width=0.5,marker={'color':'chocolate'})
+    color  = ['blue','red','green']
+    trace = go.Bar(x=x,y=y,width=0.5,marker={'color':color},text=y)
     data = [trace]
     layout=go.Layout(xaxis={'title':'parameter'},yaxis={'title':'percentage'})
     fig = go.Figure(data=data,layout=layout)
     z=pyo.plot(fig,output_type='div')
     return z
+
+mapping_pred = {
+    "GVP" : [94.45,38.17,39.91],
+    "ANITS" : [97.89,36.69,40.94],
+    "BABA" : [63.78,20.84,32.06],
+    "DIET" : [66.26,15.67,23.63],
+    "AVANTI" : [54.87,11.69,21.79],
+    "VIIT" : [55.23,21.30,38.21],
+    "Sundar Rajan" : [91.93,51.08,55.56],
+    "PEC" : [84,50.11,58.47],
+    "St.Xavier's" : [92,60.56,66.91]
+}
 
 mapping = {
     "GVP" : graph([94.45,38.17,39.91]),
@@ -46,8 +59,11 @@ mapping = {
 }
 def admissions(request):
     if request.method == 'POST':
-        print("okokok")
-        return render(request,"graph.html",{"result":mapping[request.POST['college']]})
+        # print("okokok")
+        enrolP =  mapping_pred[request.POST['college']][0]
+        placeP =  mapping_pred[request.POST['college']][1]
+        emplP =  mapping_pred[request.POST['college']][2]
+        return render(request,"graph.html",{"result":mapping[request.POST['college']],"enrolP":enrolP,"placeP":placeP,"emplP":emplP,"clg":request.POST['college'],"branch":request.POST['branch']})
         # return render(request,'graph.html',{"result": mapping[request.POST['college']], "cname":request.POST['college'], "cloc":request.POST['location'], "cbranch":request.POST['branch']})
         # return render(request, 'graph.html', {"result": mapping[request.POST['college']], "cname":request.POST['college'], "cloc":request.POST['location'], "cbranch":request.POST['branch']})
     return render(request,'admissions.html', {"result":''})
@@ -200,6 +216,7 @@ def fds(request):
             "resources":s1,
             "obj":obj,
             "desc":desc,
+            "role":role,
         }
         for o in obj:
             print(o[0])
@@ -210,4 +227,6 @@ def fds(request):
 
 
 def test(request):
-    return render(request,"basef.html")
+    return render(request,"index2.html")
+
+   
