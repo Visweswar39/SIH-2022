@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'basef.html' %}
 {% load static %}
 {% block title %} Jobs {% endblock title %}
 {% block jobactive %}active{% endblock jobactive %}
@@ -17,23 +17,37 @@
             </div>
         </div>
     </div>
+
     <div style="max-width: 50vw;margin:0 auto">
-        <h1>Jobs Form</h1>
+    </br>
+    </br>
+    </br>
+        <div class="section-title">
+            <h2>Suggestion Form</h2>
+        </div>
         <form action="fds" method="post">
         {% csrf_token%}
-        Region: <select name="region" id="region" class="form-control">
+         
+        <h3>Region:</h3>
+        <select name="region" id="region" class="form-control"id="validationCustom03" required>
             <option value="" class="dropdown-item" selected="selected">Select Region</option>
         </select>
         <br><br>
-        State: <select name="state" id="state" class="form-control">
+        <h3>
+            State:
+        </h3>
+         <select name="state" id="state" class="form-control"id="validationCustom03" required>
             <option value="" selected="selected">Please select state first</option>
         </select>
         <br><br>
-        Role: <select name="role" id="branch" class="form-control">
+        <h3>
+            Role:
+        </h3>
+         <select name="role" id="branch" class="form-control"id="validationCustom03" required>
             <option value="" selected="selected">Please select branch first</option>
           </select>
           <br><br>
-          <button class="btn">Submit</button>
+          <button class="btn btn-primary">Submit</button>
         </form>
     </div>
     <div>

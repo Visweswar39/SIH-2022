@@ -20,7 +20,7 @@ def home(request):
     return render(request, 'index.html')
 
 def jobs(request):
-    return render(request, 'jobs.html', {"result" : obj.fun()})
+    return render(request, 'jobs.html')
 
 
 def graph(y):
@@ -46,8 +46,10 @@ mapping = {
 }
 def admissions(request):
     if request.method == 'POST':
-        return render(request,'graph.html',{"result": mapping[request.POST['college']], "cname":request.POST['college'], "cloc":request.POST['location'], "cbranch":request.POST['branch']})
-        # return render(request, 'admissions.html', {"  result": mapping[request.POST['college']], "cname":request.POST['college'], "cloc":request.POST['location'], "cbranch":request.POST['branch']})
+        print("okokok")
+        return render(request,"graph.html",{"result":mapping[request.POST['college']]})
+        # return render(request,'graph.html',{"result": mapping[request.POST['college']], "cname":request.POST['college'], "cloc":request.POST['location'], "cbranch":request.POST['branch']})
+        # return render(request, 'graph.html', {"result": mapping[request.POST['college']], "cname":request.POST['college'], "cloc":request.POST['location'], "cbranch":request.POST['branch']})
     return render(request,'admissions.html', {"result":''})
 
 def job_pred(request):
@@ -104,7 +106,7 @@ def job_pred(request):
         layout = go.Layout(xaxis={'title':'year'},yaxis={'title':'number of obtained jobs'})
         fig  = go.Figure(data=d,layout=layout)
         l = pyo.plot(fig,output_type='div')
-        return render(request,'graph.html',{"graph":l, "message":msg, "gtitle":gtitle})
+        return render(request,'graph.html',{"result":l, "message":msg, "gtitle":gtitle})
 
     return HttpResponse("GEt")
 

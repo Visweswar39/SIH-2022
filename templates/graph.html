@@ -1,0 +1,35 @@
+{% extends 'basef.html' %}
+{% load static %}
+{% block title %} Home {% endblock title %}
+{% block homeactive %}active{% endblock homeactive %}
+{% block body %}
+
+<div class="slider-area ">
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="single-slider section-overly slider-height2 d-flex align-items-center" >
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="hero-cap text-center ">
+                        <h2>Job Statistics</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div><br><br>
+
+<div class="container">
+    <div class="section-title">
+        <h2 class="ml-2" style="margin: 0 auto">The Admission Detalis</h2>
+    </div>
+    <span style="min-height:1000px">{{result|safe}}</span>
+    <div class="section-title">
+        <h3 style="margin: 0 auto">{{ message }}</h3>
+    </div>
+</div>
+{% endblock body %}

@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'basef.html' %}
 {% load static %}
 {% block title %} Admissions {% endblock title %}
 {% block admissionactive %}active{% endblock admissionactive %}
@@ -18,26 +18,38 @@
         </div>
     </div>
 </div>
+<br>
+<br>
 {% comment %} d-flex flex-row justify-content-sm-around {% endcomment %}
-<div class="row mx-5" style="margin:0 auto"> 
-<div class="col-sm" style="max-width: 90vw; margin: 0 auto">  
-    <h1>Admissions Form</h1>
-    <form action="" method="post">
-        {% csrf_token%}
-        Location: <select name="location" id="location" class="form-control">
-            <option value="" class="dropdown-item" selected="selected">Select Location</option>
+<div style="max-width: 50vw;margin:0 auto"> 
+    <div class="col-sm" style="max-width: 90vw; margin: 0 auto">  
+        <br>
+        <br>
+        <div class="section-title">
+            <h2>Admissions Form</h2>
+        </div>
+        <form action="" method="post">
+            {% csrf_token%}
+            <h3>Location:</h3>
+            <select name="location" id="location" class="form-control"id="validationCustom03" required>
+                <option value="" class="dropdown-item" selected="selected">Select Location</option>
+            </select>
+        <br><br>
+        <h3>College:</h3> 
+        <select name="college" id="college" class="form-control"id="validationCustom03" required>
+            <option value="" selected="selected">Please select college first</option>
         </select>
-      <br><br>
-    College: <select name="college" id="college" class="form-control">
-        <option value="" selected="selected">Please select college first</option>
-    </select>
-    <br><br>
-    Branch: <select name="branch" id="branch" class="form-control">
-        <option value="" selected="selected">Please select branch first</option>
-      </select>
-      <br><br>
-      <button class="btn">Submit</button>
-    </form>
+        <br><br>
+        <h3>
+            Branch:
+        </h3>
+         <select name="branch" id="branch" class="form-control"id="validationCustom03" required>
+            <option value="" selected="selected">Please select branch first</option>
+        </select>
+        <br><br>
+        <button class="btn btn-primary">Submit</button>
+        </form>
+    </div>
 </div>
 <!-- Hero Area End -->
 
