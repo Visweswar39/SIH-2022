@@ -25,4 +25,5 @@ urlpatterns = [
     path('admissions', views.admissions, name='admissions'),
     path('job_pre',views.job_pred),
     path('fds',views.fds),
+    # path('test',views.test),
 ]
