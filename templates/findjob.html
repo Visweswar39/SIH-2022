@@ -4,7 +4,6 @@
 {% block jobactive %}active{% endblock jobactive %}
 {% block body %}
 
-
 <!-- Hero Area Start-->
 <div class="slider-area ">
     <div class="single-slider section-overly slider-height2 d-flex align-items-center" style="background-image:url('{% static '/img/banner/about.jpg' %}')">
@@ -12,7 +11,7 @@
             <div class="row">
                 <div class="col-xl-12">
                     <div class="hero-cap text-center">
-                        <h2>Get your job</h2>
+                        <h2>Find your job</h2>
                     </div>
                 </div>
             </div>
@@ -20,72 +19,47 @@
     </div>
     <div style="max-width: 50vw;margin:0 auto">
         <h1>Jobs Form</h1>
-        <form action="job_pre" method="post">
-            {% csrf_token%}
-            Region: <select name="region" id="region" class="form-control" id="validationCustom03" required>
-                <option value="" class="dropdown-item" selected="selected">Select Region</option>
-            </select>
-            <div class="invalid-feedback">
-                Please select a valid Region
-              </div>
-          <br><br>
-        State: <select name="state" id="state" class="form-control" id="validationCustom03" required>
+        <form action="fds" method="post">
+        {% csrf_token%}
+        Region: <select name="region" id="region" class="form-control">
+            <option value="" class="dropdown-item" selected="selected">Select Region</option>
+        </select>
+        <br><br>
+        State: <select name="state" id="state" class="form-control">
             <option value="" selected="selected">Please select state first</option>
         </select>
-        <div class="invalid-feedback">
-            Please select a valid state
-          </div>
         <br><br>
-        Branch: <select name="branch" id="branch" class="form-control" id="validationCustom03" required>
+        Role: <select name="role" id="branch" class="form-control">
             <option value="" selected="selected">Please select branch first</option>
           </select>
-          <div class="invalid-feedback">
-              Please select a valid Branch
-            </div>
           <br><br>
-          <button class="btn" onclick="load()">Submit</button>
+          <button class="btn">Submit</button>
         </form>
+    </div>
+    <div>
+        <h1>{{skills}}</h1>
     </div>
 </div>
 <!-- Hero Area End -->
 
-
+<p>{{ result }}</p>
 
 <script>
+    var roles = ["sde","web_developer","Architect","Electronics_Design_Engineer","Field_Test_Engineer","Telecom_Engineer","Broadcast_Engineer","Systems_Engineer","Material_Engineer","Petroleum_Engineer","Chemical_Engineer","Automative_Engineer","Thermal_Engineer","Manufacturing_Engineer","Construction_Engineer","Urban_Planning_Engineer"]
     var branches = ["CSE/IT","ECE","EEE","CIV","MEC","CHEM"]
     var dataObject = {
     "North":{
-        "Jammu and Kashmir":branches,
-        "Himachal Pradesh":branches,
-        "Uttarakhand":branches,
-        "Punjab":branches,
-        "Uttar Pradesh":branches
+        "DELHI":roles,
     },
     "South":{
-        "Kerala":branches,
-        "Tamil Nadu":branches,
-        "Andhra Pradesh":branches,
-        "Telangana":branches,
-        "Karnataka":branches,
-        "Goa":branches
+        "CHENNAI":roles,
     },
     "East":{
-        "Seven Sisters":branches,
-        "West Bengal":branches,
+        "KOLKATA":roles,
     },
     "West":{
-        "Rajasthan":branches,
-        "Gujarat":branches,
-        "Haryana":branches
-    },
-    "Central":{
-        "Madhya Pradesh":branches,
-        "Bihar":branches,
-        "Maharashtra":branches,
-        "Chattisgarh":branches,
-        "Orissa":branches,
-        "Jharkhnad":branches,
-    },
+       "MUMBAI":roles,
+    }
     }
     window.onload = function() {
     var regionSel = document.getElementById("region");

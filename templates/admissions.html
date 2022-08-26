@@ -18,9 +18,11 @@
         </div>
     </div>
 </div>
-<div style="max-width: 50vw;margin:0 auto">
+{% comment %} d-flex flex-row justify-content-sm-around {% endcomment %}
+<div class="row mx-5" style="margin:0 auto"> 
+<div class="col-sm" style="max-width: 90vw; margin: 0 auto">  
     <h1>Admissions Form</h1>
-    <form action="adm_pred" method="post">
+    <form action="" method="post">
         {% csrf_token%}
         Location: <select name="location" id="location" class="form-control">
             <option value="" class="dropdown-item" selected="selected">Select Location</option>
@@ -38,6 +40,19 @@
     </form>
 </div>
 <!-- Hero Area End -->
+
+
+<div class="col-sm" style:"width:100%">
+    <h2>{{cloc}}  {{cname}}  {{cbranch}}</h2>
+    <span style="width:100% !important">{{ result | safe }}</span>
+</div>
+
+</div>
+
+
+
+
+{% comment %} js for form  {% endcomment %}
 <script>
     var dataObject = {
         "Vizag":{

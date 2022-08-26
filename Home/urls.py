@@ -24,5 +24,5 @@ urlpatterns = [
     path('jobs', views.jobs, name='jobs'),
     path('admissions', views.admissions, name='admissions'),
     path('job_pre',views.job_pred),
-    path('adm_pred',views.adm_pred),
+    path('fds',views.fds),
 ]
